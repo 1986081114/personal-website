@@ -1,17 +1,26 @@
-import { Geist, Geist_Mono, Outfit, Oxanium } from "next/font/google"
+import type { Metadata } from "next"
+import { Cormorant_Garamond, Outfit } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
-const oxaniumHeading = Oxanium({subsets:['latin'],variable:'--font-heading'});
-
-const outfit = Outfit({subsets:['latin'],variable:'--font-sans'})
-
-const fontMono = Geist_Mono({
+const heading = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-mono",
+  weight: ["500", "600"],
+  variable: "--font-heading",
 })
+
+const sans = Outfit({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
+
+export const metadata: Metadata = {
+  title: "Zhao Ji",
+  description:
+    "Photographs of landscapes, interiors, and portraits by Zhao Ji.",
+}
 
 export default function RootLayout({
   children,
@@ -22,7 +31,11 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", outfit.variable, oxaniumHeading.variable)}
+      className={cn(
+        "scroll-smooth antialiased",
+        sans.variable,
+        heading.variable
+      )}
     >
       <body>
         <ThemeProvider>{children}</ThemeProvider>
